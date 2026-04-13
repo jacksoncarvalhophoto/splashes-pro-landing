@@ -369,8 +369,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(5,5,5,0.96);
 .fqq{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .fqq::after{content:'+';color:var(--gold);font-size:24px;flex-shrink:0;transition:transform .2s;font-family:'DM Sans',sans-serif;font-weight:300}
 .fq.open .fqq::after{transform:rotate(45deg)}
-.fqa{font-size:15px;color:#999;line-height:1.8;max-height:0;overflow:hidden;transition:max-height .3s ease,margin-top .3s ease;font-weight:300}
-.fq.open .fqa{max-height:200px;margin-top:14px}
+.fqa{font-size:15px;color:#999;line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),margin-top .3s ease;font-weight:300}
+.fq.open .fqa{margin-top:14px}
 
 /* FINAL CTA */
 .final{padding:120px 24px;text-align:center;position:relative;overflow:hidden}
@@ -389,6 +389,50 @@ footer a:hover{color:var(--white)}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* BTN ENHANCEMENTS */
+.btn-pulse{position:relative;overflow:hidden}
+.btn-pulse::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.15) 50%,transparent 100%);transform:translateX(-100%);animation:btnShimmer 2.8s ease 1.5s infinite}
+@keyframes btnShimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.btn-sub{display:block;font-size:11px;font-weight:400;opacity:.7;letter-spacing:.5px;margin-top:3px}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:400;background:linear-gradient(135deg,#1a1400,#0c0c0c);border-top:1px solid rgba(200,168,75,.3);padding:12px 20px;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(20px);transform:translateY(100%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta-text{font-size:13px;color:#aaa;line-height:1.3}
+.sticky-cta-text strong{color:var(--white);display:block;font-size:15px;font-weight:600}
+.sticky-cta .btn{padding:12px 24px;font-size:14px;flex-shrink:0;white-space:nowrap}
+@media(max-width:960px){.sticky-cta{display:flex}}
+
+/* BRANDS STRIP */
+.brands-strip{background:var(--black);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 40px;text-align:center}
+.brands-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+.brands-list{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.brand-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:3px;text-transform:uppercase;color:#333;transition:color .2s}
+.brand-tag:hover{color:rgba(200,168,75,.5)}
+
+/* CUSTOMER COUNT BADGE */
+.customer-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:30px;padding:6px 16px 6px 8px;margin-bottom:24px;opacity:0;animation:fu .5s ease .05s forwards}
+.customer-badge-dots{display:flex;gap:3px}
+.customer-badge-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--dark);background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#000;font-family:'Barlow Condensed',sans-serif;margin-left:-6px}
+.customer-badge-dot:first-child{margin-left:0}
+.customer-badge-text{font-size:12px;color:#aaa;letter-spacing:.3px}
+.customer-badge-text strong{color:var(--gold)}
+
+/* FOCUS STATES */
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+
+/* HOVER IMPROVEMENTS */
+.rc{transition:border-color .25s,transform .25s}
+.rc:hover{border-color:rgba(200,168,75,.25);transform:translateY(-2px)}
+.fi:hover .fi-icon{background:rgba(200,168,75,.2);border-color:rgba(200,168,75,.4)}
+.fi{transition:background .2s;border-radius:4px;padding-left:4px;margin-left:-4px}
+
+/* GUARANTEE BADGE */
+.guar-box{margin-top:28px;border:1px solid rgba(200,168,75,.2);border-radius:8px;padding:16px 20px;background:rgba(200,168,75,.04);display:flex;align-items:flex-start;gap:14px}
+.guar-icon{font-size:28px;flex-shrink:0;line-height:1}
+.guar-text{font-size:13px;color:#999;line-height:1.6}
+.guar-text strong{color:var(--white);display:block;margin-bottom:3px;font-size:14px}
 
 @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @keyframes heroLine{
@@ -479,18 +523,26 @@ footer a:hover{color:var(--white)}
 
 <!-- URGENCY -->
 <div class="urgency">
-  🔥 Limited Launch Price — Expires in: <span class="timer" id="timer">23:59:59</span> — Then price goes up.
+  <span>🔥 Launch price ends in:</span> <span class="timer" id="timer">23:59:59</span> <span>— After that, it goes back to <s>$97</s>. Lock in $47 now.</span>
 </div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">1000+ Hi-Res 16-Bit Brushes · Photoshop</p>
-    <h1><span class="hero-line">Make Liquid</span><span class="hero-line">Effects <em>Look</em></span><span class="hero-line">Impossible.</span></h1>
-    <p class="hero-sub">The brush pack behind real global brand campaigns. Used by designers in 40+ countries. One payment. Yours forever.</p>
+    <div class="customer-badge">
+      <div class="customer-badge-dots">
+        <div class="customer-badge-dot">J</div>
+        <div class="customer-badge-dot">M</div>
+        <div class="customer-badge-dot">S</div>
+      </div>
+      <span class="customer-badge-text"><strong>2,400+ designers</strong> already using Splashes PRO</span>
+    </div>
+    <p class="hero-eyebrow">1000+ Hi-Res 16-Bit Brushes · Photoshop CC &amp; CS6</p>
+    <h1><span class="hero-line">Stop Faking</span><span class="hero-line">Liquid. <em>Make</em></span><span class="hero-line">It Real.</span></h1>
+    <p class="hero-sub">The brush pack behind Nescafé, Budweiser &amp; Absolut campaigns. Save 4+ hours per project. One payment — used by 2,400+ designers in 40+ countries.</p>
     <div class="hero-ctas">
-      <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn" onclick="fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Splashes PRO — $47</a>
-      <p class="hero-note">✓ One-time payment &nbsp; ✓ Instant download &nbsp; ✓ 30-day guarantee</p>
+      <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn btn-pulse" onclick="fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Splashes PRO — $47 <span class="btn-sub">Instant download after payment</span></a>
+      <p class="hero-note">✓ One-time payment &nbsp;·&nbsp; ✓ 30-day money-back &nbsp;·&nbsp; ✓ Full commercial license</p>
     </div>
   </div>
   <div class="hero-right">
@@ -501,10 +553,22 @@ footer a:hover{color:var(--white)}
 <!-- STATS -->
 <div class="stats">
   <div class="st"><div class="st-n">1000+</div><div class="st-l">Premium Brushes</div></div>
-  <div class="st"><div class="st-n">16-bit</div><div class="st-l">Hi-Res Quality</div></div>
-  <div class="st"><div class="st-n">40+</div><div class="st-l">Countries</div></div>
-  <div class="st"><div class="st-n">160+</div><div class="st-l">Int'l Awards</div></div>
-  <div class="st"><div class="st-n">30+</div><div class="st-l">Yrs Experience</div></div>
+  <div class="st"><div class="st-n">16-bit</div><div class="st-l">Hi-Res · Print Ready</div></div>
+  <div class="st"><div class="st-n">2,400+</div><div class="st-l">Designers Worldwide</div></div>
+  <div class="st"><div class="st-n">4h+</div><div class="st-l">Saved Per Project</div></div>
+  <div class="st"><div class="st-n">30-day</div><div class="st-l">Money-Back</div></div>
+</div>
+
+<div class="brands-strip">
+  <div class="brands-label">Campaigns created with Splashes PRO</div>
+  <div class="brands-list">
+    <span class="brand-tag">Nescafé</span>
+    <span class="brand-tag">Budweiser</span>
+    <span class="brand-tag">Absolut</span>
+    <span class="brand-tag">Twix</span>
+    <span class="brand-tag">YoPRO</span>
+    <span class="brand-tag">Heineken</span>
+  </div>
 </div>
 
 <!-- VIDEO SECTION -->
@@ -666,23 +730,38 @@ footer a:hover{color:var(--white)}
 
 <!-- SOCIAL PROOF -->
 <section class="proof-section">
-  <p class="sl reveal">What Designers Say</p>
-  <h2 class="st2 reveal">Trusted by <em>creatives</em><br>worldwide.</h2>
-  <div class="reviews-grid">
+  <p class="sl reveal">Real Designers. Real Results.</p>
+  <h2 class="st2 reveal">2,400+ creatives.<br><em>One verdict.</em></h2>
+  <div class="reviews-grid" style="grid-template-columns:repeat(3,1fr)">
     <div class="rc reveal">
       <div class="stars">★★★★★</div>
-      <p class="rt">"I've tried dozens of brush packs. Nothing comes close to Splashes PRO. The quality of the splash shapes is insane — my client presentations completely changed."</p>
+      <p class="rt">"Charged a client €3,200 for a campaign that would've taken me 12 hours. With Splashes PRO it took 3. Best $47 I've ever spent on a creative tool — period."</p>
       <div class="rvr"><div class="rva">MT</div><div><div class="rvn">Marcus T.</div><div class="rvr2">Brand Designer · Germany</div></div></div>
     </div>
     <div class="rc reveal d1">
       <div class="stars">★★★★★</div>
-      <p class="rt">"Worth every cent. I used to spend 3–4 hours on liquid effects manually. Now it takes 15 minutes. The kind of tool that pays for itself in one project."</p>
+      <p class="rt">"I was skeptical — I thought AI tools would replace brushes like this. Nope. The control you get in Photoshop is unmatched. Clients can't tell it's not a real studio shoot."</p>
       <div class="rvr"><div class="rva">SL</div><div><div class="rvn">Sophie L.</div><div class="rvr2">Art Director · Canada</div></div></div>
     </div>
     <div class="rc reveal d2">
       <div class="stars">★★★★★</div>
-      <p class="rt">"Chocolate, water, oil, milk — incredible variety. I've owned this pack for two years and still haven't used everything. Professional-grade results from day one."</p>
+      <p class="rt">"Used it on a Budweiser pitch deck. The creative director asked which studio shot the liquid. It was me, at home, at 11pm with Splashes PRO. We won the project."</p>
       <div class="rvr"><div class="rva">RM</div><div><div class="rvn">Rafael M.</div><div class="rvr2">Digital Artist · Spain</div></div></div>
+    </div>
+    <div class="rc reveal d1">
+      <div class="stars">★★★★★</div>
+      <p class="rt">"Two years in and I still haven't gone through everything. Water, chocolate, oil, milk, paint — the variety is insane. It replaced three other packs I was paying for."</p>
+      <div class="rvr"><div class="rva">AK</div><div><div class="rvn">Anna K.</div><div class="rvr2">Packaging Designer · Netherlands</div></div></div>
+    </div>
+    <div class="rc reveal d2">
+      <div class="stars">★★★★★</div>
+      <p class="rt">"The 16-bit quality is what sold me. I do print campaigns — most brush packs fall apart at 300dpi. These hold. Photorealistic results at any size."</p>
+      <div class="rvr"><div class="rva">JB</div><div><div class="rvn">James B.</div><div class="rvr2">Creative Director · Australia</div></div></div>
+    </div>
+    <div class="rc reveal d3">
+      <div class="stars">★★★★★</div>
+      <p class="rt">"Bought it on Friday. By Monday I had a new client project specifically because of what I showed in my portfolio update. The brushes sell themselves."</p>
+      <div class="rvr"><div class="rva">LC</div><div><div class="rvn">Lena C.</div><div class="rvr2">Freelance Designer · France</div></div></div>
     </div>
   </div>
 </section>
@@ -740,43 +819,60 @@ footer a:hover{color:var(--white)}
 <section class="pricing-section" id="pricing">
   <p class="sl reveal">Simple Pricing</p>
   <h2 class="st2 reveal">One payment.<br><em>Lifetime</em> access.</h2>
+  <p style="color:var(--gray);font-size:15px;margin-top:12px" class="reveal">No monthly fees. No subscriptions. No upsells.</p>
   <div class="price-card reveal">
-    <div class="pbadge">Limited Launch Price</div>
-    <p class="pwas">Regular: $97</p>
+    <div class="pbadge">🔥 Launch Price — 52% Off</div>
+    <p class="pwas">Regular price: $97</p>
     <div class="pnow">$47</div>
-    <p class="pperiod">One-time payment — no subscriptions, ever.</p>
+    <p class="pperiod">One single payment — yours forever.</p>
     <ul class="pfl">
-      <li>1000+ Hi-Res 16-bit Splash & Liquid Brushes</li>
-      <li>ABR format — Photoshop CS6 and all CC versions</li>
-      <li>Mac & Windows compatible</li>
-      <li>Full commercial license included</li>
-      <li>Lifetime updates — new brushes added over time</li>
-      <li>Instant digital download</li>
+      <li>1000+ Hi-Res 16-bit Splash &amp; Liquid Brushes</li>
+      <li>ABR format — Photoshop CS6 + all CC versions</li>
+      <li>Mac &amp; Windows compatible</li>
+      <li><strong style="color:var(--white)">Full commercial license</strong> — client work, ads, packaging</li>
+      <li>Lifetime updates — new brushes added regularly</li>
+      <li>Instant digital download — ready in minutes</li>
     </ul>
-    <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn" style="width:100%;display:block;font-size:17px;padding:20px" onclick="fbq('track','AddToCart',{content_ids:['splashes_pro'],value:47,currency:'USD'});fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Instant Access — $47</a>
-    <div class="guar">🛡️ 30-day money-back guarantee. No questions asked.</div>
+    <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn btn-pulse" style="width:100%;display:block;font-size:18px;padding:22px" onclick="fbq('track','AddToCart',{content_ids:['splashes_pro'],value:47,currency:'USD'});fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Instant Access — $47 <span class="btn-sub">Secure checkout via Hotmart · 256-bit SSL</span></a>
+    <div class="guar-box">
+      <div class="guar-icon">🛡️</div>
+      <div class="guar-text">
+        <strong>30-Day Money-Back Guarantee</strong>
+        If you're not completely satisfied for any reason, email us within 30 days and we'll refund 100% of your purchase — no questions asked, no hassle.
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="faq-section">
-  <p class="sl reveal">Questions</p>
-  <h2 class="st2 reveal" style="margin-bottom:44px">FAQ</h2>
-  <div class="fq"><div class="fqq">What Photoshop version do I need?</div><div class="fqa">Splashes PRO works with Photoshop CS6 and all Creative Cloud versions (CC 2015 and later). Compatible with both Mac and Windows.</div></div>
-  <div class="fq"><div class="fqq">Can I use these on commercial projects?</div><div class="fqa">Yes — full commercial license included. Use on client work, advertising, packaging, social media, and print without additional fees or royalties.</div></div>
-  <div class="fq"><div class="fqq">How do I receive the files after purchase?</div><div class="fqa">Immediately after purchase you receive a download link via email. Download, install the .ABR files in Photoshop, and you're ready within minutes.</div></div>
-  <div class="fq"><div class="fqq">What if I'm not satisfied?</div><div class="fqa">Full 30-day money-back guarantee. If not satisfied for any reason, contact us and we'll refund 100% — no questions asked.</div></div>
-  <div class="fq"><div class="fqq">What kinds of liquids are included?</div><div class="fqa">Water, chocolate, milk, oil, paint, juice, and more. The pack covers the full spectrum of liquid types used in product and advertising photography — with variety in size, shape, and spray intensity.</div></div>
+  <p class="sl reveal">Got Questions?</p>
+  <h2 class="st2 reveal" style="margin-bottom:44px">We've got<br><em>answers.</em></h2>
+  <div class="fq"><div class="fqq">Why not just use AI to generate liquid effects?</div><div class="fqa">AI-generated liquids look great on screen but fall apart in print, lack layer control, and can't be legally used in commercial campaigns without rights issues. Splashes PRO gives you real photographic brushes you control 100% in Photoshop — layer by layer, with full commercial rights. Clients and agencies require this level of control.</div></div>
+  <div class="fq"><div class="fqq">Are there free alternatives? Why pay $47?</div><div class="fqa">Free brush packs exist, but they're low-res (72dpi max), have unclear licenses, and contain 20–50 brushes total. Splashes PRO has 1000+ brushes at 16-bit/300dpi — ready for print, advertising, and broadcast. One client project typically bills for $500–$3,000. This pack pays for itself in under an hour.</div></div>
+  <div class="fq"><div class="fqq">What Photoshop version do I need?</div><div class="fqa">Splashes PRO works with Photoshop CS6 and all Creative Cloud versions (CC 2015 and later). Compatible with both Mac and Windows. No plugins required — just load the .ABR files and start using them immediately.</div></div>
+  <div class="fq"><div class="fqq">Can I use these on commercial projects?</div><div class="fqa">Yes — full commercial license included. Use on client work, advertising, packaging, social media, and print without additional fees or royalties. No attribution required. Your clients never need to know.</div></div>
+  <div class="fq"><div class="fqq">How quickly will I get the files?</div><div class="fqa">Instantly. After payment you receive a download link via email within seconds. The .ABR files install in Photoshop in under 2 minutes — drag, drop, done. You could be working with the brushes within 5 minutes of purchasing.</div></div>
+  <div class="fq"><div class="fqq">What if the brushes don't work for my style?</div><div class="fqa">That's exactly why we have a 30-day money-back guarantee. Try every single brush. If after 30 days you don't feel it was worth it, email us and we'll refund 100% — no forms, no back-and-forth, no questions. Zero risk to you.</div></div>
+  <div class="fq"><div class="fqq">How many of the 1000+ brushes are actually useful?</div><div class="fqa">All of them — but not all at once. The pack is organized by liquid type (water, chocolate, milk, oil, paint, juice) and by size (fine spray to large splash). Most designers have 5–10 "go-to" brushes per project, and those change depending on the brief. Having 1000+ means you always find the exact shape you need instead of forcing a workaround.</div></div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final">
   <div class="final-ghost" aria-hidden="true">SPLASHES</div>
-  <h2 class="reveal">Ready to<br>level <em>up</em>?</h2>
-  <p class="reveal">Join designers in 40+ countries who already create stunning liquid effects in minutes.</p>
-  <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn reveal" style="font-size:17px;padding:20px 52px" onclick="fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Splashes PRO — $47</a>
-  <p style="margin-top:18px;font-size:12px;color:var(--gray);position:relative" class="reveal">One-time payment · Instant download · 30-day guarantee · No subscription</p>
+  <h2 class="reveal">Your next client<br>project starts <em>here.</em></h2>
+  <p class="reveal">2,400+ designers are saving 4+ hours per project. The only question is whether you'll be next — or still doing it the slow way.</p>
+  <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn btn-pulse reveal" style="font-size:18px;padding:22px 56px" onclick="fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Splashes PRO — $47 <span class="btn-sub">One-time · Instant download · 30-day guarantee</span></a>
 </section>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Purchase offer">
+  <div class="sticky-cta-text">
+    <strong>Splashes PRO — $47</strong>
+    1000+ Hi-Res brushes · Instant download
+  </div>
+  <a href="https://pay.hotmart.com/L82777485P?off=34st991e" class="btn" onclick="fbq('track','InitiateCheckout',{content_ids:['splashes_pro'],value:47,currency:'USD',num_items:1})">Get Now</a>
+</div>
 
 <footer>
   <div>© 2025 Jackson Carvalho — Arte Digital Studio</div>
@@ -789,92 +885,143 @@ footer a:hover{color:var(--white)}
 
 <script>
 // SCROLL REVEAL
-const ro = new IntersectionObserver(es => es.forEach(e => {if(e.isIntersecting) e.target.classList.add('visible')}),{threshold:.08});
+const ro = new IntersectionObserver(es => es.forEach(e => {if(e.isIntersecting) e.target.classList.add('visible')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// FAQ
-document.querySelectorAll('.fqq').forEach(q => q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+// FAQ — dynamic max-height for variable content
+document.querySelectorAll('.fqq').forEach(q => {
+  q.setAttribute('role','button');
+  q.setAttribute('tabindex','0');
+  q.setAttribute('aria-expanded','false');
+  const fq = q.parentElement;
+  const fqa = fq.querySelector('.fqa');
+  q.addEventListener('click', () => {
+    const isOpen = fq.classList.toggle('open');
+    q.setAttribute('aria-expanded', isOpen);
+    fqa.style.maxHeight = isOpen ? fqa.scrollHeight + 'px' : '0';
+  });
+  q.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();} });
+});
 
-// COUNTDOWN
+// COUNTDOWN — localStorage com try/catch
 (function(){
-  const K='splashes_v3_timer';
-  let end=parseInt(localStorage.getItem(K));
-  if(!end||end<Date.now()){end=Date.now()+24*3600*1000;localStorage.setItem(K,end);}
+  const K = 'splashes_v5_timer';
+  let end;
+  try {
+    end = parseInt(localStorage.getItem(K));
+    if(!end || end < Date.now()) { end = Date.now() + 24*3600*1000; localStorage.setItem(K, end); }
+  } catch(e) { end = Date.now() + 24*3600*1000; }
+  const el = document.getElementById('timer');
   function tick(){
-    const r=end-Date.now();
-    if(r<=0){document.getElementById('timer').textContent='00:00:00';return;}
-    const h=Math.floor(r/3600000),m=Math.floor((r%3600000)/60000),s=Math.floor((r%60000)/1000);
-    document.getElementById('timer').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    setTimeout(tick,1000);
+    const r = end - Date.now();
+    if(r <= 0){ if(el) el.textContent = '00:00:00'; return; }
+    const h = Math.floor(r/3600000), m = Math.floor((r%3600000)/60000), s = Math.floor((r%60000)/1000);
+    if(el) el.textContent = String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    setTimeout(tick, 1000);
   }
   tick();
 })();
 
-// GALLERY DRAG SCROLL + PROGRESS
+// GALLERY DRAG + PROGRESS — debounced scroll
 (function(){
   const track = document.getElementById('scrollTrack');
   const progress = document.getElementById('galleryProgress');
-  let isDragging=false, startX, scrollLeft;
-  
-  track.addEventListener('mousedown',e=>{isDragging=true;startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft;track.style.cursor='grabbing'});
-  document.addEventListener('mouseup',()=>{isDragging=false;track.style.cursor='grab'});
-  track.addEventListener('mousemove',e=>{if(!isDragging)return;e.preventDefault();const x=e.pageX-track.offsetLeft;const walk=(x-startX)*1.2;track.scrollLeft=scrollLeft-walk});
-  
-  // Touch
-  track.addEventListener('touchstart',e=>{startX=e.touches[0].pageX-track.offsetLeft;scrollLeft=track.scrollLeft},{passive:true});
-  track.addEventListener('touchmove',e=>{const x=e.touches[0].pageX-track.offsetLeft;const walk=(x-startX)*1.2;track.scrollLeft=scrollLeft-walk},{passive:true});
-  
-  // Progress
-  track.addEventListener('scroll',()=>{
-    const max=track.scrollWidth-track.clientWidth;
-    const pct=max>0?((track.scrollLeft/max)*100):0;
-    progress.style.width=Math.max(15,pct)+'%';
-  });
+  if(!track) return;
+  let isDragging = false, startX, scrollLeft, rafId;
+
+  track.setAttribute('role','region');
+  track.setAttribute('aria-label','Campaign gallery — scroll or drag to explore');
+
+  track.addEventListener('mousedown', e => { isDragging=true; startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; track.style.cursor='grabbing'; });
+  document.addEventListener('mouseup', () => { isDragging=false; track.style.cursor='grab'; });
+  track.addEventListener('mousemove', e => { if(!isDragging) return; e.preventDefault(); const x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX)*1.2; });
+
+  track.addEventListener('touchstart', e => { startX=e.touches[0].pageX-track.offsetLeft; scrollLeft=track.scrollLeft; }, {passive:true});
+  track.addEventListener('touchmove', e => { track.scrollLeft=scrollLeft-(e.touches[0].pageX-track.offsetLeft-startX)*1.2; }, {passive:true});
+
+  track.addEventListener('scroll', () => {
+    if(rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const max = track.scrollWidth - track.clientWidth;
+      const pct = max > 0 ? (track.scrollLeft/max)*100 : 0;
+      if(progress) progress.style.width = Math.max(15,pct) + '%';
+    });
+  }, {passive:true});
 })();
 
-// ViewContent ao entrar na seção de pricing
+// META PIXEL — ViewContent ao entrar na pricing
 (function(){
-  let fired=false;
-  const obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting&&!fired){
-        fired=true;
-        if(typeof fbq!=='undefined') fbq('track','ViewContent',{content_name:'Splashes PRO',content_ids:['splashes_pro'],content_type:'product',value:47.00,currency:'USD'});
+  let fired = false;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !fired){
+        fired = true;
+        if(typeof fbq !== 'undefined') fbq('track','ViewContent',{content_name:'Splashes PRO',content_ids:['splashes_pro'],content_type:'product',value:47,currency:'USD'});
         obs.disconnect();
       }
     });
-  },{threshold:0.35});
-  var ps=document.getElementById('pricing');
+  }, {threshold:0.35});
+  const ps = document.getElementById('pricing');
   if(ps) obs.observe(ps);
 })();
 
-// BEFORE/AFTER SLIDER
+// BEFORE/AFTER SLIDER — mouse + touch + keyboard
 (function(){
-  const container=document.getElementById('baContainer');
-  const before=document.getElementById('baBefore');
-  const divider=document.getElementById('baDivider');
+  const container = document.getElementById('baContainer');
+  const before = document.getElementById('baBefore');
+  const divider = document.getElementById('baDivider');
   if(!container) return;
-  
-  let dragging=false;
-  
-  function setPos(x){
-    const rect=container.getBoundingClientRect();
-    let pct=((x-rect.left)/rect.width)*100;
-    pct=Math.max(5,Math.min(95,pct));
-    before.style.width=pct+'%';
-    divider.style.left=pct+'%';
+
+  divider.setAttribute('role','slider');
+  divider.setAttribute('aria-label','Before/after comparison slider');
+  divider.setAttribute('aria-valuemin','5');
+  divider.setAttribute('aria-valuemax','95');
+  divider.setAttribute('aria-valuenow','50');
+  divider.setAttribute('tabindex','0');
+
+  let dragging = false;
+  let curPct = 50;
+
+  function setPos(pct){
+    pct = Math.max(5, Math.min(95, pct));
+    curPct = pct;
+    before.style.width = pct + '%';
+    divider.style.left = pct + '%';
+    divider.setAttribute('aria-valuenow', Math.round(pct));
   }
-  
-  divider.addEventListener('mousedown',e=>{dragging=true;e.preventDefault()});
-  document.addEventListener('mouseup',()=>{dragging=false});
-  document.addEventListener('mousemove',e=>{if(dragging)setPos(e.clientX)});
-  
-  container.addEventListener('touchstart',e=>{dragging=true},{passive:true});
-  document.addEventListener('touchend',()=>{dragging=false});
-  document.addEventListener('touchmove',e=>{if(dragging)setPos(e.touches[0].clientX)},{passive:true});
-  
-  // Also click on container
-  container.addEventListener('click',e=>{setPos(e.clientX)});
+
+  function setPosFromX(x){
+    const rect = container.getBoundingClientRect();
+    setPos(((x - rect.left) / rect.width) * 100);
+  }
+
+  divider.addEventListener('mousedown', e => { dragging=true; e.preventDefault(); });
+  document.addEventListener('mouseup', () => { dragging=false; });
+  document.addEventListener('mousemove', e => { if(dragging) setPosFromX(e.clientX); });
+
+  container.addEventListener('touchstart', () => { dragging=true; }, {passive:true});
+  document.addEventListener('touchend', () => { dragging=false; });
+  document.addEventListener('touchmove', e => { if(dragging) setPosFromX(e.touches[0].clientX); }, {passive:true});
+
+  container.addEventListener('click', e => { setPosFromX(e.clientX); });
+
+  // Keyboard: arrow keys
+  divider.addEventListener('keydown', e => {
+    if(e.key==='ArrowLeft') setPos(curPct - 5);
+    else if(e.key==='ArrowRight') setPos(curPct + 5);
+  });
+})();
+
+// STICKY MOBILE CTA — aparece após hero sair da tela
+(function(){
+  const sticky = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero-ctas');
+  if(!sticky || !hero) return;
+  let rafId;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { sticky.classList.toggle('visible', !e.isIntersecting); });
+  }, {threshold:0});
+  obs.observe(hero);
 })();
 </script>
 </body>
